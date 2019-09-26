@@ -1,0 +1,53 @@
+@font-face {
+  font-family: "KozukaMinchoProBBold";
+  src: url("./fonts/KozukaMinchoProB.eot");
+  src: url("./fonts/KozukaMinchoProB.eot?#iefix") format("embedded-opentype"),
+    url("./fonts/KozukaMinchoProB.otf") format("opentype"),
+    url("./fonts/KozukaMinchoProB.svg") format("svg"),
+    url("./fonts/KozukaMinchoProB.ttf") format("truetype"),
+    url("./fonts/KozukaMinchoProB.woff") format("woff"),
+    url("./fonts/KozukaMinchoProB.woff2") format("woff2");
+}
+body  {
+  background-image: url("images/background.jpg");
+  background-color: #5944a3;
+  font-family: 'KozukaMinchoProBBold';
+  color: #ffffff;
+  text-align:center
+}
+a:link {
+  color: #c384ff;
+  text-decoration: none;
+}
+a:visited {
+  color: #c384ff;
+  text-decoration: none;
+}
+a:hover {
+  color: #c384ff;
+  text-decoration: none;
+}
+a:active {
+  color: #c384ff;
+  text-decoration: none;
+}
+div.navbar {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding: 2px;
+  width: 25%;
+  background: rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 5px 5px #ffffff;
+}
+div.box {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 60px;
+  margin-bottom: 60px;
+  padding: 5px;
+  width: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 5px 5px #ffffff;
+}
