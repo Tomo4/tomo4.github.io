@@ -1,0 +1,119 @@
+
+  <!doctype html>
+  <html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <title>Miis - Tomo World</title>
+
+    <meta name="format-detection" content="telephone=no">
+    
+      <meta name="csrf-token" content="">
+    
+    
+      <meta name="client-id" content="">
+    
+    
+    
+
+    <link rel="dns-prefetch" href="mii-studio.akamaized.net">
+    <link rel="preconnect" href="https://mii-studio.akamaized.net">
+    <link rel="stylesheet" href="miis/app.css">
+  </head>
+
+<body data-page-id="mii-new" data-language="en-US" data-params="" data-image-base="https://mii-studio.akamaized.net/editor/1">
+<div id="editor"></div>
+<script src="miis/editor.pc.js"></script>
+
+<div class="o-modal c-error-modal" id="modal-error">
+  <div class="o-modal__overlay"></div>
+  <div class="o-modal__container c-error-modal__container">
+    <div class="c-error-modal__content">
+      <div class="c-lead">
+        <p>An error has occurred. Please try again later.</p>
+      </div>
+      <div class="c-error-modal__action">
+        <a href="#" class="o-modal__close c-error-modal__btn c-error-modal__btn--primary">
+          OK
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+  <script src="miis/app.js"></script>
+  <script src="miis/nintendo-jssdk-client.3.0.0.js"></script>
+  <script>
+    NASessionManager = (function() {
+      return {
+        connectOrigin          : "https://accounts.nintendo.com",
+        apiOrigin              : "https://api.accounts.nintendo.com",
+        clientId               : "",
+        origin                 : "https://studio.mii.nintendo.com",
+        sessionStateCookieName : "NASS",
+        initialize: function(callback) {
+          document.addEventListener("nintendoReady", callback);
+
+          ninAcc.init({
+            connectOrigin : this.connectOrigin,
+            apiOrigin     : this.apiOrigin,
+            clientId      : this.clientId,
+            clientOrigin  : this.origin,
+            responseType  : ["token"],
+            scope         : []
+          });
+        },
+
+        loadSessionState: function() {
+          
+          var cookies = document.cookie.split('; ').map(function (pair) {
+              return pair.split("=", 2);
+          }).reduce(function (iv, cur) {
+              if (cur[0].length > 0) iv[decodeURIComponent(cur[0])] = decodeURIComponent(cur[1]);
+              return iv;
+          }, {});
+
+          return cookies[this.sessionStateCookieName];
+        },
+
+        subscribeSessionStateChangeEvent: function(sessionState, onChanged) {
+          ninAcc.oauth.checkSessionState(sessionState).then(function(result) {
+            if (result.status === 'changed') {
+              onChanged();
+              return;
+            }
+            ninAcc.event.subscribe('oauth.sessionStateChange', { "sessionState": sessionState }, function(error, result) {
+              if (error) {
+                return;
+              }
+              if (result.status === "changed") {
+                onChanged();
+              }
+            });
+          });
+        }
+      };
+    })();
+
+    NASessionManager.initialize(function() {
+      function logoutUri() {
+        return "/logout";
+      }
+
+      function onChangedSessionState() {
+        document.location.href = logoutUri();
+      }
+
+      var sessionState = NASessionManager.loadSessionState();
+      NASessionManager.subscribeSessionStateChangeEvent(sessionState, function() {
+        onChangedSessionState();
+      });
+    });
+
+  </script>
+  </body>
+  </html>
+

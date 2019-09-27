@@ -11,6 +11,8 @@
 body  {
   background-image: url("images/background.jpg");
   background-color: #5944a3;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   font-family: 'KozukaMinchoProBBold';
   color: #ffffff;
   text-align:center
@@ -53,4 +55,7 @@ div.box {
   width: 50%;
   background: rgba(0, 0, 0, 0.7);
   box-shadow: 0px 0px 5px 5px #ffffff;
+}
+.box img {
+	box-shadow: 0px 0px 5px 5px #ffffff;
 }
