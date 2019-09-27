@@ -100,9 +100,6 @@
     })();
 
     NASessionManager.initialize(function() {
-      function logoutUri() {
-        return "/logout";
-      }
 
       function onChangedSessionState() {
         document.location.href = logoutUri();
