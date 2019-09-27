@@ -6475,19 +6475,15 @@
                 class: t.$style.container
             }, [r("div", {
                 class: t.$style.action
-            }, [r("button", {
+            }, [r("", {
                 directives: [{
-                    name: "tap",
-                    rawName: "v-tap",
+                    name: "",
+                    rawName: "",
                     value: function() {
                         return t.$emit("exit")
                     },
                     expression: "() => $emit('exit')"
                 }],
-                class: [t.$style.button, t.$style.btn, t.$style.btnSecondary],
-                domProps: {
-                    textContent: t._s(t.$texts["editor.gender.back.link"])
-                }
             })])])])
         },
         a = [],
@@ -27670,7 +27666,7 @@
             "editor.continue.popup.quit.link": "Start from scratch",
             "editor.error.timeout.close.link": "Close",
             "editor.error.timeout.lead": "An error has occurred. Please try again later.",
-            "editor.gender.back.link": "Back",
+            "editor.gender.back.link": "",
             "editor.gender.female.link": "Female",
             "editor.gender.male.link": "Male",
             "editor.gender.select_gender.lead": "Please select a gender for this Mii.",
